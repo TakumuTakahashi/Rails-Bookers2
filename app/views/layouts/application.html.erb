@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookers(local)</title>
+    <title>Bookers</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,43 +11,61 @@
 
   <body>
 
-    <header>
-      <span>Bookers</span>
-      <ul>
-        <% if user_signed_in? %>
-          <li>
-            <%= link_to "Home", user_path(current_user.id) %>
-          </li>
-          <li>
-            <%= link_to "Users", users_path %>
-          </li>
-          <li>
-            <%= link_to "Books", books_path %>
-          </li>
-          <li>
-            <%= link_to "logout", destroy_user_session_path, method: :delete %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to "Home", root_path %>
-          </li>
-          <li>
-            <%= link_to "About", home_about_path %>
-          </li>
-          <li>
-            <%= link_to "sign up", new_user_registration_path %>
-          </li>
-          <li>
-            <%= link_to "login", new_user_session_path %>
-          </li>
-        <% end %>
-      </ul>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container clearfix">
+        <nav class="nav navbar-nav navbar-left" >
+          <span class="header-logo">Bookers</span>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li class="nav-list">
+                <%= link_to "Home", user_path(current_user.id), class: "header-link" %>
+              </li>
+              <li class="nav-list">
+                <%= link_to "Users", users_path, class: "header-link" %>
+              </li>
+              <li class="nav-list">
+                <%= link_to "Books", books_path, class: "header-link" %>
+              </li>
+              <li class="nav-list">
+                <%= link_to "logout", destroy_user_session_path, method: :delete, class: "header-link" %>
+              </li>
+            <% else %>
+              <li class="nav-list">
+                <%= link_to "Home", root_path, class: "header-link" %>
+              </li>
+              <li class="nav-list">
+                <%= link_to "About", home_about_path, class: "header-link" %>
+              </li>
+              <li class="nav-list">
+                <%= link_to "sign up", new_user_registration_path, class: "header-link" %>
+              </li>
+              <li class="nav-list">
+                <%= link_to "login", new_user_session_path, class: "header-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
     </header>
 
-    <%= yield %>
+    <div class="body">
+      <div class="container">
+        <div class="row">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
 
     <footer>
-      <p>CopyRight Infratop.inc</p>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-xs-3 col-xs-offset-9'>
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
     </footer>
 
   </body>
