@@ -2,12 +2,14 @@
 
 <div class="col-xs-9">
   <h2>Book detail</h2>
-  <table class="table table-striped">
+  <table class="table">
     <tbody>
         <tr>
           <td>
-          プロフィール画像<br>
-          <%= link_to @detail_book.user.name, user_path(@detail_book.user) %>
+            <%= link_to user_path(@detail_book.user) do %>
+              <%= attachment_image_tag @detail_book.user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "attachment user profile_image fallback" , fallback: "no_image.jpg", size: '40x40' %><br>
+              <%= @detail_book.user.name %>
+            <% end %>
           </td>
           <td><%= link_to @detail_book.title, book_path(@detail_book) %></td>
           <td><%= @detail_book.body %></td>
